@@ -1,0 +1,17 @@
+.content {
+    height: 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+.content p {
+    font-size: larger;
+}
+
+.page__position {
+    margin-top: 200px;
+}

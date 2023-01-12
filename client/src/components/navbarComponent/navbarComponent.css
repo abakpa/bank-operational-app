@@ -1,0 +1,32 @@
+.nav__bg__color {
+    background-color: blue;
+    color: #fff;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.content {
+    height: 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.nav__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+ul a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+}
