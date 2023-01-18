@@ -5,6 +5,11 @@ const tellerAccountSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    staffId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "staff",
+        required: true,
+    },
     tellerFullName: {
         type: String,
         required: true,

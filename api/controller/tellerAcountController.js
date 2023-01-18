@@ -9,6 +9,7 @@ const createTellerAccount = async(req, res) => {
     try {
         const staffNumber = req.body.staffNumber;
         const staffTeller = await StaffDb.findOne({ staffNumber });
+
         const tellerId = await tellerWallet.find({}).count();
         const newTellerId = tellerId + 1;
         req.body.tellerId = newTellerId;
@@ -16,21 +17,43 @@ const createTellerAccount = async(req, res) => {
         req.body.withdrawal = 0;
         req.body.tellerAccountBalance = 0;
         req.body.tellerFullName = staffTeller.fullName;
+        req.body.staffId = staffTeller._id;
         req.body.narration = "Newly created";
         const newTellerAccount = await tellerAccount.create({...req.body });
         // console.log(newTellerAccount.tellerId);
         req.body.tellerId = newTellerAccount.tellerId;
         req.body.tellerBalance = 0;
         req.body.tellerFullName = newTellerAccount.tellerFullName;
+        req.body.staffId = staffTeller._id;
         const newTellerWallet = await tellerWallet.create({...req.body });
         res.json({ data: newTellerWallet });
     } catch (error) {
         res.json(error);
     }
 };
+
+const tellerLoggedIn = async(req, res) => {
+    try {
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({ staffId: tellerStaffId });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        res.json({ data: checkTeller });
+    } catch (error) {
+        res.json(error);
+    }
+};
 const tellerAccountDeposit = async(req, res) => {
     try {
-        const tellerId = req.body.tellerId;
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({
+            staffId: tellerStaffId,
+        });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        const tellerId = checkTeller.tellerId;
         const getTellerBalance = await tellerWallet.findOne({ tellerId });
         const currentTellerBalance = getTellerBalance.tellerBalance;
         req.body.tellerBalance =
@@ -76,12 +99,23 @@ const tellerAccountWithdrawal = async(req, res) => {
 
 const tellerCustomerAccountDeposit = async(req, res) => {
     try {
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({
+            staffId: tellerStaffId,
+        });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        const tellerId = checkTeller.tellerId;
         const customerAccountNumber = req.body.accountNumber;
         const getCustomerDetails = await customerWallet.findOne({
             accountNumber: customerAccountNumber,
         });
+        console.log(req.body);
         req.body.fullName = getCustomerDetails.fullName;
         req.body.tellerFullName = getCustomerDetails.fullName;
+        req.body.staffId = tellerStaffId;
+        req.body.tellerId = tellerId;
         const currentCustomerBalance = getCustomerDetails.accountBalance;
 
         req.body.newAccountBalance =
@@ -97,7 +131,7 @@ const tellerCustomerAccountDeposit = async(req, res) => {
         const customerTransactionAccount = await customerAccount.create({
             ...req.body,
         });
-        const tellerId = req.body.tellerId;
+        // const tellerId = checkTeller.tellerId;
         const getTellerBalance = await tellerWallet.findOne({ tellerId });
         const currentTellerBalance = getTellerBalance.tellerBalance;
         req.body.tellerBalance =
@@ -177,6 +211,7 @@ const tellerCustomerAccountWithdrawal = async(req, res) => {
 };
 module.exports = {
     createTellerAccount,
+    tellerLoggedIn,
     tellerAccountDeposit,
     tellerAccountWithdrawal,
     tellerCustomerAccountDeposit,

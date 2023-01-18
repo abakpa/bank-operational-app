@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { tellerToCustomerDeposit } from "../../redux/Actions/customerActions";
 import TellerLandingPageComponent from "../tellerComponent/TellerLandingPageComponent";
 
 const CustomerDepositComponent = () => {
   const dispatch = useDispatch();
-  const [tellerId, setTellerId] = useState("");
+  const { login } = useSelector((state) => state.login);
+  const token = login.token;
+  // const [tellerId, setTellerId] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [deposit, setDeposit] = useState("");
   const [narration, setNarration] = useState("");
@@ -13,13 +15,13 @@ const CustomerDepositComponent = () => {
   const customerDeposit = (e) => {
     e.preventDefault();
     const postCustomerDeposit = {
-      tellerId,
+      // tellerId,
       accountNumber,
       deposit,
       narration,
     };
-    dispatch(tellerToCustomerDeposit(postCustomerDeposit));
-    setTellerId("");
+    dispatch(tellerToCustomerDeposit(postCustomerDeposit, token));
+    // setTellerId("");
     setAccountNumber("");
     setDeposit("");
     setNarration("");
@@ -33,12 +35,12 @@ const CustomerDepositComponent = () => {
         <form onSubmit={customerDeposit}>
           <div className="login__center">
             <h2>Customer Deposit</h2>
-            <input
+            {/* <input
               type="text"
               value={tellerId}
               onChange={(e) => setTellerId(e.target.value)}
               placeholder="Teller Id"
-            />
+            /> */}
             <input
               type="text"
               value={accountNumber}

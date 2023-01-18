@@ -21,13 +21,17 @@ export const createCustomer = (postCustomer) => async(dispatch) => {
 };
 
 export const tellerToCustomerDeposit =
-    (postCustomerDeposit) => async(dispatch) => {
+    (postCustomerDeposit, token) => async(dispatch) => {
         try {
             dispatch({ type: actionTypes.POST_CUSTOMER_REQUEST });
-
+            console.log(postCustomerDeposit, token);
             const { data } = await axios.post(
                 "/api/teller/customerdeposit",
-                postCustomerDeposit
+                postCustomerDeposit, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             dispatch({
