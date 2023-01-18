@@ -9,7 +9,7 @@ const OperationsLandingPageComponent = () => {
   return (
     <div className="welcome">
       <h2>Welcome.....{!loading && login.data.fullName}</h2>
-      <h2>Operations</h2>
+      <h2>Operations...</h2>
       <div>
         <Link to={"/customerLandingPage"}>Customer Service</Link>
       </div>
