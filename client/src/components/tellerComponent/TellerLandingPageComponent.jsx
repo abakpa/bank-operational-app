@@ -19,9 +19,9 @@ const TellerLandingPageComponent = () => {
       <div>
         <Link to={"/customerwithdrawalpage"}>Post Withdrawal</Link>
       </div>
-      <div>
+      {/* <div>
         <Link to={"/vaultdeposit"}>Post to Vault</Link>
-      </div>
+      </div> */}
     </div>
   );
 };

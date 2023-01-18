@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { vaultToBankDeposit } from "../../redux/Actions/vaultActions";
+import VaultLandingPageComponent from "../OperationsComponent/VaultLandingPageComponent";
 
 const VaultBankDepositComponent = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,10 @@ const VaultBankDepositComponent = () => {
     setNarration("");
   };
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <VaultLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={vaultPostToBank}>
           <div className="login__center">

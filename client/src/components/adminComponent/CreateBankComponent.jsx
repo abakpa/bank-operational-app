@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createBank } from "../../redux/Actions/adminActions";
+import AdminLandingPageComponent from "../adminComponent/AdminLandingPageComponent";
 
 const CreateBankComponent = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,10 @@ const CreateBankComponent = () => {
   };
 
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <AdminLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={createNewTeller}>
           <div className="login__center">

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createVault } from "../../redux/Actions/vaultActions";
+import VaultLandingPageComponent from "../OperationsComponent/VaultLandingPageComponent";
 
 const CreateVaultComponent = () => {
   const dispatch = useDispatch("");
-  const { loading } = useSelector((state) => state.vault);
+  // const { loading } = useSelector((state) => state.vault);
   const [vaultBranch, setVaultBranch] = useState("");
 
   const createNewVault = (e) => {
@@ -12,12 +13,15 @@ const CreateVaultComponent = () => {
     dispatch(createVault(vaultBranch));
   };
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <VaultLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={createNewVault}>
           <div className="login__center">
             <h2>Create Vault</h2>
-            {loading ? "loading..." : "Vault created"}
+            {/* {loading ? "loading..." : "Vault created"} */}
             <input
               value={vaultBranch}
               type="text"

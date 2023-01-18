@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { tellerToCustomerDeposit } from "../../redux/Actions/customerActions";
+import TellerLandingPageComponent from "../tellerComponent/TellerLandingPageComponent";
 
 const CustomerDepositComponent = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ const CustomerDepositComponent = () => {
     setNarration("");
   };
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <TellerLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={customerDeposit}>
           <div className="login__center">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { tellerPostVault } from "../../redux/Actions/vaultActions";
+import VaultLandingPageComponent from "../OperationsComponent/VaultLandingPageComponent";
 
 const VaultDepositComponent = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,10 @@ const VaultDepositComponent = () => {
     dispatch(tellerPostVault(postVault));
   };
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <VaultLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={tellerPostToVault}>
           <div className="login__center">

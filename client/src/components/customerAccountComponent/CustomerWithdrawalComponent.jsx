@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { tellerToCustomerWithdrawal } from "../../redux/Actions/customerActions";
+import TellerLandingPageComponent from "../tellerComponent/TellerLandingPageComponent";
 
 const CustomerWithdrawalComponent = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ const CustomerWithdrawalComponent = () => {
     setNarration("");
   };
   return (
-    <div>
+    <div className="dept">
+      <div>
+        <TellerLandingPageComponent />
+      </div>
       <div>
         <form onSubmit={customerWithdrawal}>
           <div className="login__center">
