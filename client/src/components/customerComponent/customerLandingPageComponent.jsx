@@ -5,7 +5,7 @@ const hrLandingPageComponent = () => {
   return (
     <div className="page__position">
       <div className="content">
-        <h3>Operations</h3>
+        <h3>Customer Service</h3>
         <p>
           <Link to="/createcustomer">Open account</Link>
         </p>
@@ -17,9 +17,6 @@ const hrLandingPageComponent = () => {
         </p>
         <p>
           <Link to="/viewallcustomer">View all customer</Link>
-        </p>
-        <p>
-          <Link to="/viewallcustomer">Teller operations</Link>
         </p>
       </div>
       <div></div>

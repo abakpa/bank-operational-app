@@ -9,6 +9,7 @@ const TellerLandingPageComponent = () => {
   return (
     <div className="welcome">
       <h2>Welcome.....{!loading && login.data.fullName}</h2>
+      <h3>Teller Operations</h3>
       <div>
         <Link to={"/createteller"}>Create Teller</Link>
       </div>
@@ -17,6 +18,9 @@ const TellerLandingPageComponent = () => {
       </div>
       <div>
         <Link to={"/customerwithdrawalpage"}>Post Withdrawal</Link>
+      </div>
+      <div>
+        <Link to={"/vaultdeposit"}>Post to Vault</Link>
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const VaultWithdrawalComponent = () => {
               type="text"
               value={vaultId}
               onChange={(e) => setVaultId(e.target.value)}
-              placeholder="Branch Code"
+              placeholder="Vault Code"
             />
             <input
               type="text"
