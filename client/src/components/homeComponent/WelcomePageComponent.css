@@ -1,8 +1,19 @@
 .welcome {
     margin-top: 200px;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    background: #fff;
+    border: none;
+    border-radius: 20px;
 }
 
 .welcome a {
     text-decoration: none;
+    font-size: larger;
+}
+
+.welcome__name {
+    color: blue;
     font-size: larger;
 }

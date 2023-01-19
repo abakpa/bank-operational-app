@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //components
 import HomePage from "./components/homeComponent/HomePage";
@@ -28,9 +30,13 @@ import CustomerDepositComponent from "./components/customerAccountComponent/Cust
 import CustomerWithdrawalComponent from "./components/customerAccountComponent/CustomerWithdrawalComponent";
 
 function App() {
+  const { login, loading } = useSelector((state) => state.login);
   return (
     <Router>
       <NavbarComponent />
+      <h2 className="welcome__name content">
+        {!loading && login.data.fullName}
+      </h2>
       <main>
         <Routes>
           <Route exact path="/" element={<HomePage />} />

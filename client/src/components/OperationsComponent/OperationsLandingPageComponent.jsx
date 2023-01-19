@@ -8,8 +8,8 @@ const OperationsLandingPageComponent = () => {
   console.log("loading", loading);
   return (
     <div className="welcome">
-      <h2>Welcome.....{!loading && login.data.fullName}</h2>
-      <h2>Operations...</h2>
+      <h2>{!loading && login.data.fullName}</h2>
+      <h3>Operations...</h3>
       <div>
         <Link to={"/customerLandingPage"}>Customer Service</Link>
       </div>
