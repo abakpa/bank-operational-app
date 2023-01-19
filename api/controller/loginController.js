@@ -49,13 +49,11 @@ const staffLogin = async(req, res) => {
             userName,
         });
         if (!staffLogin) {
-            // return res.json({ message: "Wrong login details..." });
             throw new Error("Wrong login details...");
         }
 
         const validPassword = await bcrypt.compare(password, staffLogin.password);
         if (!validPassword) {
-            // return res.json({ message: "wrong login details..." });
             throw new Error("Wrong login details...");
         }
 
@@ -68,4 +66,8 @@ const staffLogin = async(req, res) => {
     }
 };
 
-module.exports = { generateCredentials, createLoginCredentials, staffLogin };
+module.exports = {
+    generateCredentials,
+    createLoginCredentials,
+    staffLogin,
+};

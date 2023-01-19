@@ -9,6 +9,7 @@ export const loginReducer = (
     switch (action.type) {
         case actionTypes.LOGIN_STAFF_REQUEST:
         case actionTypes.SIGNUP_STAFF_REQUEST:
+        case actionTypes.LOGOUT_STAFF_REQUEST:
             return {
                 loading: true,
             };
@@ -18,8 +19,13 @@ export const loginReducer = (
                 loading: false,
                 login: action.payload,
             };
+        case actionTypes.LOGOUT_STAFF_SUCCESS:
+            return {
+                login: "",
+            };
         case actionTypes.LOGIN_STAFF_FAIL:
         case actionTypes.SIGNUP_STAFF_FAIL:
+        case actionTypes.LOGOUT_STAFF_FAIL:
             return {
                 loading: false,
                 error: action.payload,

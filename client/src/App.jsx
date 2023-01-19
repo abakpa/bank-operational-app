@@ -30,13 +30,11 @@ import CustomerDepositComponent from "./components/customerAccountComponent/Cust
 import CustomerWithdrawalComponent from "./components/customerAccountComponent/CustomerWithdrawalComponent";
 
 function App() {
-  const { login, loading } = useSelector((state) => state.login);
+  const { login } = useSelector((state) => state.login);
   return (
     <Router>
       <NavbarComponent />
-      <h2 className="welcome__name content">
-        {!loading && login.data.fullName}
-      </h2>
+      <h2 className="welcome__name content">{login && login.data.fullName}</h2>
       <main>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
