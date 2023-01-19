@@ -1,13 +1,11 @@
 import React from "react";
 import "./navbarComponent.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../redux/Actions/logOutAction";
 const NavbarComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { login } = useSelector((state) => state.login);
-  const token = login?.token;
 
   const logOut = (e) => {
     e.preventDefault();
@@ -33,9 +31,9 @@ const NavbarComponent = () => {
             <Link to="/signup">Sign up</Link>
           </li>
           <li>
-            <a className="pointer" onClick={logOut}>
+            <button className="pointer" onClick={logOut}>
               Log out
-            </a>
+            </button>
           </li>
         </ul>
       </div>

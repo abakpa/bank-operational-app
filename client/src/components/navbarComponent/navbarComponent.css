@@ -33,4 +33,8 @@ ul a {
 
 .pointer {
     cursor: pointer;
+    background: blue;
+    color: #fff;
+    border: none;
+    font-size: large;
 }
