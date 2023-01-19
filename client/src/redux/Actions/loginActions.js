@@ -12,7 +12,7 @@ export const logins = (log, navigate) => async(dispatch) => {
             type: actionTypes.LOGIN_STAFF_SUCCESS,
             payload: data,
         });
-
+        localStorage.setItem("staff", JSON.stringify(data));
         navigate("/welcomepage");
     } catch (error) {
         dispatch({
