@@ -2,7 +2,7 @@ import * as actionTypes from "../constants/loginConstant";
 
 export const loginReducer = (
     state = {
-        loading: false,
+        login: "",
     },
     action
 ) => {
