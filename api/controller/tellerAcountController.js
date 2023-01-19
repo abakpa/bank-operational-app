@@ -111,7 +111,6 @@ const tellerCustomerAccountDeposit = async(req, res) => {
         const getCustomerDetails = await customerWallet.findOne({
             accountNumber: customerAccountNumber,
         });
-        console.log(req.body);
         req.body.fullName = getCustomerDetails.fullName;
         req.body.tellerFullName = getCustomerDetails.fullName;
         req.body.staffId = tellerStaffId;
@@ -157,6 +156,16 @@ const tellerCustomerAccountDeposit = async(req, res) => {
 
 const tellerCustomerAccountWithdrawal = async(req, res) => {
     try {
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({
+            staffId: tellerStaffId,
+        });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        const tellerId = checkTeller.tellerId;
+        req.body.staffId = tellerStaffId;
+        req.body.tellerId = tellerId;
         const customerAccountNumber = req.body.accountNumber;
         const getCustomerDetails = await customerWallet.findOne({
             accountNumber: customerAccountNumber,
@@ -181,7 +190,7 @@ const tellerCustomerAccountWithdrawal = async(req, res) => {
                 ...req.body,
             });
 
-            const tellerId = req.body.tellerId;
+            // const tellerId = req.body.tellerId;
             const getTellerBalance = await tellerWallet.findOne({ tellerId });
             const currentTellerBalance = getTellerBalance.tellerBalance;
             if (currentTellerBalance < req.body.withdrawal) {

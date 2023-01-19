@@ -111,6 +111,16 @@ const vaultAccountWithdrawal = async(req, res) => {
 
 const vaultBankAccountDeposit = async(req, res) => {
     try {
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({
+            staffId: tellerStaffId,
+        });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        req.body.staffName = checkTeller.tellerFullName;
+        const tellerId = checkTeller.tellerId;
+        req.body.tellerId = tellerId;
         const bankAccountNumber = req.body.bankAccountNumber;
         const getBankDetails = await externalBankWallet.findOne({
             bankAccountNumber,
@@ -131,7 +141,6 @@ const vaultBankAccountDeposit = async(req, res) => {
             const bankTransactionAccount = await externalBankAccount.create({
                 ...req.body,
             });
-            const tellerId = req.body.tellerId;
             const vaultTellerDeposit = await tellerAccount.findOne({ tellerId });
             const vaultId = req.body.vaultId;
             const getVaultBalance = await vaultWallet.findOne({ vaultId });
@@ -161,7 +170,16 @@ const vaultBankAccountDeposit = async(req, res) => {
 
 const vaultBankAccountWithdrawal = async(req, res) => {
     try {
-        const tellerId = req.body.tellerId;
+        const tellerStaffId = req.staff.staffId;
+        const checkTeller = await tellerWallet.findOne({
+            staffId: tellerStaffId,
+        });
+        if (!checkTeller) {
+            return res.json({ msg: "You don't have teller right" });
+        }
+        req.body.staffName = checkTeller.tellerFullName;
+        const tellerId = checkTeller.tellerId;
+        req.body.tellerId = tellerId;
         const vaultTellerWithdrawal = await tellerAccount.findOne({
             tellerId,
         });

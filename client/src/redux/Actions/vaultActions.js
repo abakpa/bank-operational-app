@@ -55,35 +55,44 @@ export const tellerWithdrawalVault = (postVault) => async(dispatch) => {
     }
 };
 
-export const vaultToBankDeposit = (postBankDeposit) => async(dispatch) => {
-    try {
-        dispatch({ type: actionTypes.POST_VAULT_REQUEST });
+export const vaultToBankDeposit =
+    (postBankDeposit, token) => async(dispatch) => {
+        try {
+            dispatch({ type: actionTypes.POST_VAULT_REQUEST });
 
-        const { data } = await axios.post(
-            "/api/vault/bankdeposit",
-            postBankDeposit
-        );
+            const { data } = await axios.post(
+                "/api/vault/bankdeposit",
+                postBankDeposit, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
-        dispatch({
-            type: actionTypes.POST_VAULT_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: actionTypes.POST_VAULT_FAIL,
-            payload: error,
-        });
-    }
-};
+            dispatch({
+                type: actionTypes.POST_VAULT_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: actionTypes.POST_VAULT_FAIL,
+                payload: error,
+            });
+        }
+    };
 
 export const vaultToBankWithdrawal =
-    (postBankWithdrawal) => async(dispatch) => {
+    (postBankWithdrawal, token) => async(dispatch) => {
         try {
             dispatch({ type: actionTypes.POST_VAULT_REQUEST });
 
             const { data } = await axios.post(
                 "/api/vault/bankwithdrawal",
-                postBankWithdrawal
+                postBankWithdrawal, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             dispatch({

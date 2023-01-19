@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { tellerToCustomerWithdrawal } from "../../redux/Actions/customerActions";
 import TellerLandingPageComponent from "../tellerComponent/TellerLandingPageComponent";
 
 const CustomerWithdrawalComponent = () => {
   const dispatch = useDispatch();
-  const [tellerId, setTellerId] = useState("");
+  const { login } = useSelector((state) => state.login);
+  const token = login.token;
+  // const [tellerId, setTellerId] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [withdrawal, setWithdrawal] = useState("");
   const [narration, setNarration] = useState("");
@@ -13,13 +15,13 @@ const CustomerWithdrawalComponent = () => {
   const customerWithdrawal = (e) => {
     e.preventDefault();
     const postCustomerWithdrawal = {
-      tellerId,
+      // tellerId,
       accountNumber,
       withdrawal,
       narration,
     };
-    dispatch(tellerToCustomerWithdrawal(postCustomerWithdrawal));
-    setTellerId("");
+    dispatch(tellerToCustomerWithdrawal(postCustomerWithdrawal, token));
+    // setTellerId("");
     setAccountNumber("");
     setWithdrawal("");
     setNarration("");
@@ -33,12 +35,12 @@ const CustomerWithdrawalComponent = () => {
         <form onSubmit={customerWithdrawal}>
           <div className="login__center">
             <h2>Customer Withdrawal</h2>
-            <input
+            {/* <input
               type="text"
               value={tellerId}
               onChange={(e) => setTellerId(e.target.value)}
               placeholder="Teller Id"
-            />
+            /> */}
             <input
               type="text"
               value={accountNumber}

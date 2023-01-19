@@ -15,7 +15,7 @@ router.post("/", createTellerAccount);
 router.get("/", auth, tellerLoggedIn);
 router.post("/deposit", auth, tellerAccountDeposit);
 router.post("/customerdeposit", auth, tellerCustomerAccountDeposit);
-router.post("/customerwithdrawal", tellerCustomerAccountWithdrawal);
+router.post("/customerwithdrawal", auth, tellerCustomerAccountWithdrawal);
 router.post("/withdrawal", tellerAccountWithdrawal);
 
 module.exports = router;

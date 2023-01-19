@@ -47,13 +47,17 @@ export const tellerToCustomerDeposit =
     };
 
 export const tellerToCustomerWithdrawal =
-    (postCustomerWithdrawal) => async(dispatch) => {
+    (postCustomerWithdrawal, token) => async(dispatch) => {
         try {
             dispatch({ type: actionTypes.POST_CUSTOMER_REQUEST });
 
             const { data } = await axios.post(
                 "/api/teller/customerwithdrawal",
-                postCustomerWithdrawal
+                postCustomerWithdrawal, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             dispatch({

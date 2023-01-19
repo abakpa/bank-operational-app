@@ -1,32 +1,34 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { vaultToBankWithdrawal } from "../../redux/Actions/vaultActions";
 import VaultLandingPageComponent from "../OperationsComponent/VaultLandingPageComponent";
 
 const VaultBankDepositComponent = () => {
   const dispatch = useDispatch();
-  const [tellerId, setTellerId] = useState("");
+  const { login } = useSelector((state) => state.login);
+  const token = login.token;
+  // const [tellerId, setTellerId] = useState("");
   const [vaultId, setVaultId] = useState("");
   const [bankAccountNumber, setBankAccountNumber] = useState("");
-  const [staffName, setStaffName] = useState("");
+  // const [staffName, setStaffName] = useState("");
   const [withdrawal, setWithdrawal] = useState("");
   const [narration, setNarration] = useState("");
 
   const vaultPostToBank = (e) => {
     e.preventDefault();
     const postBankDeposit = {
-      tellerId,
+      // tellerId,
       vaultId,
       bankAccountNumber,
-      staffName,
+      // staffName,
       withdrawal,
       narration,
     };
-    dispatch(vaultToBankWithdrawal(postBankDeposit));
-    setTellerId("");
+    dispatch(vaultToBankWithdrawal(postBankDeposit, token));
+    // setTellerId("");
     setVaultId("");
     setBankAccountNumber("");
-    setStaffName("");
+    // setStaffName("");
     setWithdrawal("");
     setNarration("");
   };
@@ -39,7 +41,7 @@ const VaultBankDepositComponent = () => {
         <form onSubmit={vaultPostToBank}>
           <div className="login__center">
             <h2>Bank to vault</h2>
-            <input
+            {/* <input
               type="text"
               value={tellerId}
               onChange={(e) => setTellerId(e.target.value)}
@@ -50,7 +52,7 @@ const VaultBankDepositComponent = () => {
               value={staffName}
               onChange={(e) => setStaffName(e.target.value)}
               placeholder="Staff name"
-            />
+            /> */}
 
             <input
               type="text"
