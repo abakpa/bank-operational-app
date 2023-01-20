@@ -8,6 +8,7 @@ const {
 const multer = require("multer");
 
 const router = express.Router();
+const auth = require("../middleware/authentication");
 
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -22,7 +23,7 @@ const upload = multer({
     storage: storage,
 });
 
-router.post("/", upload.single("photoAndSignature"), createCustomer);
+router.post("/", auth, upload.single("photoAndSignature"), createCustomer);
 router.get("/", getAllCustomer);
 router.get("/:id", getCustomer);
 router.put("/:id", upload.single("photoAndSignature"), updateCustomer);

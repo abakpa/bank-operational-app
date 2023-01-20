@@ -7,6 +7,9 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f3eeee;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 img {
@@ -17,4 +20,8 @@ img {
 main {
     width: 1100px;
     margin: 0 auto;
+}
+
+footer {
+    margin-top: auto;
 }

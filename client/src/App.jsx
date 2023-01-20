@@ -28,6 +28,7 @@ import VaultBankDepositComponent from "./components/vaultComponent/VaultBankDepo
 import VaultBankWithdrawalComponent from "./components/vaultComponent/VaultBankWithdrawalComponent";
 import CustomerDepositComponent from "./components/customerAccountComponent/CustomerDepositComponent";
 import CustomerWithdrawalComponent from "./components/customerAccountComponent/CustomerWithdrawalComponent";
+import FooterComponent from "./components/footerComponent/FooterComponent";
 
 function App() {
   const { login } = useSelector((state) => state.login);
@@ -128,6 +129,7 @@ function App() {
           />
         </Routes>
       </main>
+      <FooterComponent />
     </Router>
   );
 }
