@@ -11,8 +11,16 @@ const ViewAllCustomer = () => {
   }, [dispatch]);
   console.log(customer);
   return (
-    <div>
-      <h2>All Customers</h2>
+    <div className="customer__welcome">
+      <h2 className="all__customer__heading">All Customers</h2>
+      <div className="all__customer">
+        <div>
+          <h3>Customer Name</h3>
+        </div>
+        <div>
+          <h3>Account Number</h3>
+        </div>
+      </div>
       {loading ? (
         <h2>Loading...</h2>
       ) : (

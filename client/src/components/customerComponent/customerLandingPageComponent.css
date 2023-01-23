@@ -28,3 +28,21 @@
     justify-content: space-around;
     border: 2px solid;
 }
+
+.all__customer__heading {
+    text-align: center;
+}
+
+.customer__welcome {
+    margin-top: 100px;
+    margin-left: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: larger;
+    width: 900px;
+}
