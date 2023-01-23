@@ -1,6 +1,8 @@
 const StaffDb = require("../model/staff");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const twilio = require("twilio");
+require("dotenv").config();
 
 const getAllStaff = async(req, res) => {
     try {
@@ -27,6 +29,10 @@ const createStaff = async(req, res) => {
         req.body.staffCode = "mtn" + Math.floor(Math.random() * 1000000);
         req.body.password = "password";
         req.body.userName = "username";
+        const phoneNumber = req.body.phoneNumber;
+        const result = phoneNumber.replace(/^0/, "+234");
+        console.log(result);
+        req.body.phoneNumber = result;
         req.body.registerationStatus = false;
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt);
@@ -59,6 +65,19 @@ const createStaff = async(req, res) => {
             text: `Hello ${staff.fullName}`, // plain text body
             html: outPut, // html body
         });
+
+        const client = new twilio(
+            process.env.TWILIO_SID,
+            process.env.TWILIO_AUTH_TOKEN
+        );
+        client.messages
+            .create({
+                body: `Generate login credentials with, STAFF NUMBER: ${staff.staffNumber} and STAFF CODE: ${staff.staffCode}`,
+                from: "+19705388542",
+                to: `${staff.phoneNumber}`,
+            })
+            .then((message) => console.log(message))
+            .catch((err) => console.log(err));
         res.json({ staff });
     } catch (error) {
         res.json(error);
