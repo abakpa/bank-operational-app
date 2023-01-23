@@ -20,6 +20,24 @@ export const createCustomer = (postCustomer) => async(dispatch) => {
     }
 };
 
+export const getAllCustomer = () => async(dispatch) => {
+    try {
+        dispatch({ type: actionTypes.GET_CUSTOMER_REQUEST });
+
+        const { data } = await axios.get("/api/customer");
+
+        dispatch({
+            type: actionTypes.GET_CUSTOMER_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_CUSTOMER_FAIL,
+            payload: error,
+        });
+    }
+};
+
 export const tellerToCustomerDeposit =
     (postCustomerDeposit, token) => async(dispatch) => {
         try {

@@ -29,6 +29,7 @@ import VaultBankWithdrawalComponent from "./components/vaultComponent/VaultBankW
 import CustomerDepositComponent from "./components/customerAccountComponent/CustomerDepositComponent";
 import CustomerWithdrawalComponent from "./components/customerAccountComponent/CustomerWithdrawalComponent";
 import FooterComponent from "./components/footerComponent/FooterComponent";
+import ViewAllCustomer from "./components/customerComponent/ViewAllCustomer";
 
 function App() {
   const { login } = useSelector((state) => state.login);
@@ -56,6 +57,7 @@ function App() {
             element={<VaultDepositComponent />}
           />
           <Route exact path="/welcomepage" element={<WelcomePageComponent />} />
+          <Route exact path="/viewallcustomer" element={<ViewAllCustomer />} />
           <Route
             exact
             path="/customerdepositpage"

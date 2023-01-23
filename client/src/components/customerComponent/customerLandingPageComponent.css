@@ -22,3 +22,9 @@
     border-radius: 20px;
     width: 400px;
 }
+
+.all__customer {
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid;
+}
