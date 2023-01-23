@@ -8,6 +8,7 @@ const CreateStaffComponent = () => {
   const [fullName, setFullName] = useState("");
   const [stateOfOrigin, setStateOfOrigin] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [sex, setSex] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [maritalStatus, setMaritalStatus] = useState("");
@@ -25,6 +26,7 @@ const CreateStaffComponent = () => {
       fullName,
       stateOfOrigin,
       phoneNumber,
+      email,
       sex,
       dateOfBirth,
       maritalStatus,
@@ -68,6 +70,14 @@ const CreateStaffComponent = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="Enter phone number"
+            />
+          </div>
+          <div className="dept__input">
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter Email"
             />
           </div>
           <div className="dept__input">
