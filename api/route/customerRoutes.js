@@ -25,7 +25,7 @@ const upload = multer({
 
 router.post("/", auth, upload.single("photoAndSignature"), createCustomer);
 router.get("/", getAllCustomer);
-router.get("/:id", getCustomer);
+router.post("/single", getCustomer);
 router.put("/:id", upload.single("photoAndSignature"), updateCustomer);
 
 module.exports = router;

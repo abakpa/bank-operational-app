@@ -43,9 +43,17 @@ const getAllCustomer = async(req, res) => {
 };
 const getCustomer = async(req, res) => {
     try {
-        const customerId = req.params.id;
-        const singleCustomer = await customer.findById(customerId);
-        res.json(singleCustomer);
+        const accountNumber = req.body.accountNumber;
+        const singleCustomerTransaction = await customerAccount.find({
+            accountNumber,
+        });
+        const singleCustomerBalance = await customerWallet.findOne({
+            accountNumber,
+        });
+        res.json({
+            transaction: singleCustomerTransaction,
+            balance: singleCustomerBalance,
+        });
     } catch (error) {
         res.json(error);
     }
