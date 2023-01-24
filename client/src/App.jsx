@@ -30,6 +30,8 @@ import CustomerDepositComponent from "./components/customerAccountComponent/Cust
 import CustomerWithdrawalComponent from "./components/customerAccountComponent/CustomerWithdrawalComponent";
 import FooterComponent from "./components/footerComponent/FooterComponent";
 import ViewAllCustomer from "./components/customerComponent/ViewAllCustomer";
+import CustomerStatementComponent from "./components/customerComponent/CustomerStatementComponent";
+import FooterAdjusement from "./components/footerComponent/FooterAdjusement";
 
 function App() {
   const { login } = useSelector((state) => state.login);
@@ -57,6 +59,11 @@ function App() {
             element={<VaultDepositComponent />}
           />
           <Route exact path="/welcomepage" element={<WelcomePageComponent />} />
+          <Route
+            exact
+            path="/accountstatement"
+            element={<CustomerStatementComponent />}
+          />
           <Route exact path="/viewallcustomer" element={<ViewAllCustomer />} />
           <Route
             exact
@@ -131,6 +138,7 @@ function App() {
           />
         </Routes>
       </main>
+      <FooterAdjusement />
       <FooterComponent />
     </Router>
   );

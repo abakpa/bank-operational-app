@@ -33,6 +33,28 @@
     text-align: center;
 }
 
+.all__customer__heading input {
+    padding: 10px;
+    padding-right: 200px;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 2px rgb(123, 120, 120) solid;
+    font-size: larger;
+}
+
+.statement__btn {
+    text-align: center;
+}
+
+.statement__btn button {
+    padding: 15px 50px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 2px;
+    background-color: blue;
+    color: #fff;
+}
+
 .customer__welcome {
     margin-top: 100px;
     margin-left: 150px;

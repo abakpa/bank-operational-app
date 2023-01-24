@@ -38,6 +38,26 @@ export const getAllCustomer = () => async(dispatch) => {
     }
 };
 
+export const getCustomer = (accountNumber) => async(dispatch) => {
+    try {
+        dispatch({ type: actionTypes.POST_CUSTOMER_REQUEST });
+        console.log(accountNumber);
+        const { data } = await axios.post("/api/customer/single", {
+            accountNumber,
+        });
+
+        dispatch({
+            type: actionTypes.POST_CUSTOMER_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: actionTypes.POST_CUSTOMER_FAIL,
+            payload: error,
+        });
+    }
+};
+
 export const tellerToCustomerDeposit =
     (postCustomerDeposit, token) => async(dispatch) => {
         try {

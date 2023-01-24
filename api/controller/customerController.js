@@ -50,10 +50,7 @@ const getCustomer = async(req, res) => {
         const singleCustomerBalance = await customerWallet.findOne({
             accountNumber,
         });
-        res.json({
-            transaction: singleCustomerTransaction,
-            balance: singleCustomerBalance,
-        });
+        res.json(singleCustomerTransaction);
     } catch (error) {
         res.json(error);
     }
